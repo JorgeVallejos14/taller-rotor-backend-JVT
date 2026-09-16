@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Inicio - Taller de Rotor{% endblock %}
+
+{% block contenido %}
+    <p>Total de inventos: {{ total }}</p>
+    <div class="lista">
+    {% for i in inventos %}
+        <div class="tarjeta">
+            <h2>{{ i.nombre|title }}</h2>
+            <p>Categoria: {{ i.categoria|lower }}</p>
+            <p>{{ i.descripcion|truncatewords:8 }}</p>
+            <a href="{% url 'inventos:detalle' i.id %}">Ver detalle</a>
+        </div>
+    {% empty %}
+        <p>No hay inventos registrados.</p>
+    {% endfor %}
+    </div>
+{% endblock %}

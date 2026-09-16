@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block titulo %}{{ invento.nombre }}{% endblock %}
+
+{% block contenido %}
+    <h2>{{ invento.nombre }}</h2>
+    <ul>
+        <li>Categoria: {{ invento.categoria }}</li>
+        <li>Nivel de eficacia: {{ invento.nivel_eficacia|floatformat:1 }}</li>
+        <li>Estado: {{ invento.estado|default:"desconocido" }}</li>
+    </ul>
+    <p>{{ invento.descripcion }}</p>
+
+    {% if invento.estado == "dañado" %}
+        <p class="aviso">⚠️ Este invento necesita reparacion</p>
+    {% endif %}
+
+    <a href="{% url 'inventos:inicio' %}">Volver a la portada</a>
+{% endblock %}
